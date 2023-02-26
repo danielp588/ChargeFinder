@@ -1,0 +1,35 @@
+[
+    {
+        "id": 0,
+        "username": "Lirbo",
+        "password": "Lirbo123!",
+        "admin": 3,
+        "firstname": "Liran",
+        "lastname": "Boaz",
+        "email": "liranboaz5@gmail.com",
+        "dob": "1998-06-21",
+        "address": "Korzak 17 Kefar Sava"
+    },
+    {
+        "id": 1,
+        "username": "Daniel123",
+        "password": "Kab00m#69",
+        "admin": 3,
+        "firstname": "Daniel",
+        "lastname": "Podvorny",
+        "email": "danielpodvornyy@gmail.com",
+        "dob": "2000-01-01",
+        "address": "Kibutz Gringer"
+    },
+    {
+        "id": 2,
+        "username": "Jess14",
+        "password": "Zebras123&",
+        "admin": 0,
+        "firstname": "Jessica",
+        "lastname": "White",
+        "email": "jessicawhite@gmail.com",
+        "dob": "1999-25-12",
+        "address": "77 E 4th St, New York, NY 10003, USA"
+    }
+]
