@@ -6,29 +6,37 @@ import UserContextProvider from './context/UserContext';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
+import EditPage from './pages/EditPage';
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <Routes>
+
+       <Routes>
 
           <Route path="/" element={
-            <UserContextProvider>
-              <RegisterPage />
-            </UserContextProvider>
-          } />
-
-          <Route path="login" element={
             <UserContextProvider>
               <LoginPage />
             </UserContextProvider>
           } />
 
-           <Route path="profile" element={
+          <Route path="/register" element={
+            <UserContextProvider>
+              <RegisterPage />
+            </UserContextProvider>
+          } />
+
+           <Route path="/profile" element={
             <UserContextProvider>
               <ProfilePage />
+            </UserContextProvider>
+          } />
+
+          <Route path="/edit" element={
+            <UserContextProvider>
+              <EditPage />
             </UserContextProvider>
           } />
           

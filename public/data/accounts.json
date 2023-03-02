@@ -1,9 +1,13 @@
 [
     {
-        "id": 0,
+        "id" : 0,
+        "username" : "admin",
+        "password" : "admin1234admin"
+    },
+    {
+        "id": 1,
         "username": "Lirbo",
         "password": "Lirbo123!",
-        "admin": 3,
         "firstname": "Liran",
         "lastname": "Boaz",
         "email": "liranboaz5@gmail.com",
@@ -11,10 +15,9 @@
         "address": "Korzak 17 Kefar Sava"
     },
     {
-        "id": 1,
-        "username": "Daniel123",
-        "password": "Kab00m#69",
-        "admin": 3,
+        "id": 2,
+        "username": "Daniel",
+        "password": "Daniel123!",
         "firstname": "Daniel",
         "lastname": "Podvorny",
         "email": "danielpodvornyy@gmail.com",
@@ -22,10 +25,9 @@
         "address": "Kibutz Gringer"
     },
     {
-        "id": 2,
+        "id": 3,
         "username": "Jess14",
         "password": "Zebras123&",
-        "admin": 0,
         "firstname": "Jessica",
         "lastname": "White",
         "email": "jessicawhite@gmail.com",

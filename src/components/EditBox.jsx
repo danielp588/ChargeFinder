@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from 'react'
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom/dist';
 
-export default function RegisterBox() {
+export default function EditBox() {
 
     let navigate = useNavigate();
 
@@ -19,9 +19,9 @@ export default function RegisterBox() {
     const [street, setStreet] = useState('');
     const [houseNumber, setHouseNumber] = useState('');
 
-    const { users, addUser } = useContext(UserContext);
+    const { users, editUser, currentUser } = useContext(UserContext);
 
-    function Register(e) {
+    function Edit(e) {
         e.preventDefault();
 
         // Check Username
@@ -74,7 +74,7 @@ export default function RegisterBox() {
         for (let i = 4; i > 0; i--)
             suffix = suffix + email[email.length - i];
         if (suffix != ".com") return alert("Doesn't end with .com");
-        if (users.find(element => element.email == email.toLowerCase())) return alert("This email is already registered in our systems!");
+        if (users.find(element => element.email == email.toLowerCase()) && currentUser.email != email.toLowerCase()) return alert("This email is already registered in our systems!");
 
         // Check Date
         let today = new Date();
@@ -92,8 +92,13 @@ export default function RegisterBox() {
         // Check House Number
         if (houseNumber < 1) return alert("Invalid House Number!");
 
-        addUser(username, password, image, firstname, lastname, email.toLowerCase(), dob, city, street, houseNumber);
-        navigate('/');//moves to login page
+        editUser(username, password, image, firstname, lastname, email.toLowerCase(), dob, city, street, houseNumber);
+
+        //admin routing goes here, if admin logged in then navigate back to admin page
+
+
+        //else
+        navigate('/');//move to login page
     }
 
     function autoComplete(){
@@ -112,58 +117,59 @@ export default function RegisterBox() {
         if(file){
             let src = URL.createObjectURL(file);
             setImage(src);
+            currentUser.image = image;
         }
     }
 
     return (
         <>
-        <h1>Register</h1>
-            <form className="px-4 py-3" onSubmit={Register}>
+        <h1>Edit Profile</h1>
+            <form className="px-4 py-3">
 
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
-                    <input type="text" className="form-control" id="username" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" className="form-control" id="username" placeholder={currentUser.username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" className="form-control" id="password" placeholder={currentUser.password} onChange={(e) => setPassword(e.target.value)} />
                     <label htmlFor="password-confirm">Confirm Password:</label>
-                    <input type="password" className="form-control" id="password-confirm" placeholder="Confirm Password" onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <input type="password" className="form-control" id="password-confirm" placeholder={currentUser.password} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="picture">Profile Picture:</label>
                     <input type="file" className="form-control" id="picture" placeholder="Select .jpg or .jpeg" accept="img/jpg, img/jpeg" onChange={(e)=> previewImage(e.target)}/>
                     
-                    <img src={image}/>
-                    {console.log(image)}
+                    {/*TO DO preview after photo change (change itself works)*/}
+                    <img src={currentUser.image} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="firstname">Firstname:</label>
-                    <input type="text" className="form-control" id="firstname" placeholder="Firstname" onChange={(e) => setFirstname(e.target.value)} />
+                    <input type="text" className="form-control" id="firstname" placeholder={currentUser.firstname} onChange={(e) => setFirstname(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="lastname">Lastname:</label>
-                    <input type="text" className="form-control" id="lastname" placeholder="Lastname" onChange={(e) => setLastname(e.target.value)} />
+                    <input type="text" className="form-control" id="lastname" placeholder={currentUser.lastname} onChange={(e) => setLastname(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="email">E-Mail:</label>
-                    <input type="text" className="form-control" id="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                    <input type="text" className="form-control" id="email" placeholder={currentUser.email} onChange={(e) => setEmail(e.target.value)} />
                     <small>So we can bombard your inbox and sell your information.</small>
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="dob">Date of Birth:</label>
-                    <input type="date" className="form-control" id="dob" placeholder="YYYY-MM-DD" onChange={(e) => setDob(e.target.value)} />
+                    <input type="date" className="form-control" id="dob" placeholder={currentUser.dob} onChange={(e) => setDob(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="city">City:</label>
-                    <input type="text" className="form-control" id="city" placeholder="City" onChange={(e) =>{setCity(e.target.value); autoComplete()}} />
+                    <input type="text" className="form-control" id="city" placeholder={currentUser.address} onChange={(e) =>{setCity(e.target.value); autoComplete()}} />
 
                     <ul id="city-autocomplete" className='list-unstyled'>
                         <li></li>
@@ -174,7 +180,7 @@ export default function RegisterBox() {
                     <label htmlFor="house-number">House Number:</label>
                     <input type="number" className="form-control" id="house-number" placeholder="House Number" onChange={(e) => setHouseNumber(e.target.value)} />
                 </div>
-                <button className="btn btn-primary">Register</button>
+                <button className="btn btn-primary" onClick={Edit}>Edit Profile</button>
 
             </form>
 
