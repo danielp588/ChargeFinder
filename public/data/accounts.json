@@ -12,7 +12,9 @@
         "lastname": "Boaz",
         "email": "liranboaz5@gmail.com",
         "dob": "1998-06-21",
-        "address": "Korzak 17 Kefar Sava"
+        "city": "city",
+        "street" :"רחובכלשהו",
+        "houseNumber": "1"
     },
     {
         "id": 2,
@@ -22,7 +24,9 @@
         "lastname": "Podvorny",
         "email": "danielpodvornyy@gmail.com",
         "dob": "2000-01-01",
-        "address": "Kibutz Gringer"
+        "city": "cityty",
+        "street" :"עודרחוב",
+        "houseNumber": "4"
     },
     {
         "id": 3,
@@ -32,6 +36,8 @@
         "lastname": "White",
         "email": "jessicawhite@gmail.com",
         "dob": "1999-25-12",
-        "address": "77 E 4th St, New York, NY 10003, USA"
+        "city": "citypa",
+        "street" :"רחוברחוב",
+        "houseNumber": "10"
     }
 ]

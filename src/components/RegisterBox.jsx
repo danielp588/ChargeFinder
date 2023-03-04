@@ -118,6 +118,7 @@ export default function RegisterBox() {
     return (
         <>
         <h1>Register</h1>
+        <button className="btn btn-primary" onClick={()=>navigate('/')}>Back to Login</button>
             <form className="px-4 py-3" onSubmit={Register}>
 
                 <div className="form-group">
@@ -137,7 +138,6 @@ export default function RegisterBox() {
                     <input type="file" className="form-control" id="picture" placeholder="Select .jpg or .jpeg" accept="img/jpg, img/jpeg" onChange={(e)=> previewImage(e.target)}/>
                     
                     <img src={image}/>
-                    {console.log(image)}
                 </div>
 
                 <div className="form-group">

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState , useEffect, useContext } from 'react';
+import { useState , useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom/dist';
 
@@ -12,7 +12,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const { authenticateUser,setCurrentUser, currentUser } = useContext(UserContext);
+  const { authenticateUser,setCurrentUser, setIsAdmin } = useContext(UserContext);
 
     function loginAttempt(e)
     {
@@ -23,8 +23,8 @@ export default function LoginPage() {
           return;
         }
         if(username == 'admin'){
-          //logged in correctly with admin credentials
-          //moves to admin page
+          setIsAdmin(true);
+          navigate('/admin')
         }
         else{
           setCurrentUser(user);

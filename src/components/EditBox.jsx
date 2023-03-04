@@ -1,5 +1,5 @@
 import React from 'react'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState} from 'react'
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom/dist';
 
@@ -7,19 +7,19 @@ export default function EditBox() {
 
     let navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [image, setImage] = useState();
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('')
-    const [email, setEmail] = useState('');
-    const [dob, setDob] = useState('');
-    const [city, setCity] = useState('');
-    const [street, setStreet] = useState('');
-    const [houseNumber, setHouseNumber] = useState('');
-
-    const { users, editUser, currentUser } = useContext(UserContext);
+    const { users, editUser, currentUser, isAdmin } = useContext(UserContext);
+    
+    const [username, setUsername] = useState(currentUser.username);
+    const [password, setPassword] = useState(currentUser.password);
+    const [confirmPassword, setConfirmPassword] = useState(currentUser.password);
+    const [image, setImage] = useState(currentUser.image);
+    const [firstname, setFirstname] = useState(currentUser.firstname);
+    const [lastname, setLastname] = useState(currentUser.lastname)
+    const [email, setEmail] = useState(currentUser.email);
+    const [dob, setDob] = useState(currentUser.dob);
+    const [city, setCity] = useState(currentUser.city);
+    const [street, setStreet] = useState(currentUser.street);
+    const [houseNumber, setHouseNumber] = useState(currentUser.houseNumber);
 
     function Edit(e) {
         e.preventDefault();
@@ -94,11 +94,13 @@ export default function EditBox() {
 
         editUser(username, password, image, firstname, lastname, email.toLowerCase(), dob, city, street, houseNumber);
 
-        //admin routing goes here, if admin logged in then navigate back to admin page
-
-
-        //else
-        navigate('/');//move to login page
+        //If admin is the one editing, go back to admin page
+        if(isAdmin){
+            navigate('/admin');
+        }
+        else{
+            navigate('/');
+        }
     }
 
     function autoComplete(){
@@ -128,14 +130,14 @@ export default function EditBox() {
 
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
-                    <input type="text" className="form-control" id="username" placeholder={currentUser.username} onChange={(e) => setUsername(e.target.value)} />
+                    <input type="text" className="form-control" id="username" defaultValue={currentUser.username} onChange={(e) => setUsername(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="password">Password:</label>
-                    <input type="password" className="form-control" id="password" placeholder={currentUser.password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" className="form-control" id="password" defaultValue={currentUser.password} onChange={(e) => setPassword(e.target.value)} />
                     <label htmlFor="password-confirm">Confirm Password:</label>
-                    <input type="password" className="form-control" id="password-confirm" placeholder={currentUser.password} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    <input type="password" className="form-control" id="password-confirm" defaultValue={currentUser.password} onChange={(e) => setConfirmPassword(e.target.value)} />
                 </div>
 
                 <div className="form-group">
@@ -148,37 +150,37 @@ export default function EditBox() {
 
                 <div className="form-group">
                     <label htmlFor="firstname">Firstname:</label>
-                    <input type="text" className="form-control" id="firstname" placeholder={currentUser.firstname} onChange={(e) => setFirstname(e.target.value)} />
+                    <input type="text" className="form-control" id="firstname" defaultValue={currentUser.firstname} onChange={(e) => setFirstname(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="lastname">Lastname:</label>
-                    <input type="text" className="form-control" id="lastname" placeholder={currentUser.lastname} onChange={(e) => setLastname(e.target.value)} />
+                    <input type="text" className="form-control" id="lastname" defaultValue={currentUser.lastname} onChange={(e) => setLastname(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="email">E-Mail:</label>
-                    <input type="text" className="form-control" id="email" placeholder={currentUser.email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="text" className="form-control" id="email" defaultValue={currentUser.email} onChange={(e) => setEmail(e.target.value)} />
                     <small>So we can bombard your inbox and sell your information.</small>
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="dob">Date of Birth:</label>
-                    <input type="date" className="form-control" id="dob" placeholder={currentUser.dob} onChange={(e) => setDob(e.target.value)} />
+                    <input type="date" className="form-control" id="dob" defaultValue={currentUser.dob} onChange={(e) => setDob(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="city">City:</label>
-                    <input type="text" className="form-control" id="city" placeholder={currentUser.address} onChange={(e) =>{setCity(e.target.value); autoComplete()}} />
+                    <input type="text" className="form-control" id="city" defaultValue={currentUser.city} onChange={(e) =>{setCity(e.target.value); autoComplete()}} />
 
                     <ul id="city-autocomplete" className='list-unstyled'>
                         <li></li>
                     </ul>
                     
                     <label htmlFor="street">Street:</label>
-                    <input type="text" className="form-control" id="street" placeholder="Street" onChange={(e) => setStreet(e.target.value)} />
+                    <input type="text" className="form-control" id="street" defaultValue={currentUser.street} onChange={(e) => setStreet(e.target.value)} />
                     <label htmlFor="house-number">House Number:</label>
-                    <input type="number" className="form-control" id="house-number" placeholder="House Number" onChange={(e) => setHouseNumber(e.target.value)} />
+                    <input type="number" className="form-control" id="house-number" defaultValue={currentUser.houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
                 </div>
                 <button className="btn btn-primary" onClick={Edit}>Edit Profile</button>
 

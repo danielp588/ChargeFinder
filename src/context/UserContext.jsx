@@ -6,7 +6,8 @@
 
         const [users, setUsers] = useState([]);
         const [currentUser, setCurrentUser] = useState(null);
-        const [globalId, setGlobalId] = useState(4);
+        const [globalId, setGlobalId] = useState(4);//"static" id setting when registering new users
+        const [isAdmin, setIsAdmin] = useState(false);
 
 
         async function loadAccounts(){
@@ -44,16 +45,17 @@
         }
 
         const editUser = (username, password, image, firstname, lastname, email, dob, city, street, houseNumber) => {
-            users[currentUser.id].username = username;
-            users[currentUser.id].password = password;
-            users[currentUser.id].image = image;
-            users[currentUser.id].firstname = firstname;
-            users[currentUser.id].lastname = lastname;
-            users[currentUser.id].email = email;
-            users[currentUser.id].dob = dob;
-            users[currentUser.id].city = city;
-            users[currentUser.id].street = street;
-            users[currentUser.id].houseNumber = houseNumber; 
+            let i = users.findIndex(u => u.id == currentUser.id)
+            users[i].username = username;
+            users[i].password = password;
+            users[i].image = image;
+            users[i].firstname = firstname;
+            users[i].lastname = lastname;
+            users[i].email = email;
+            users[i].dob = dob;
+            users[i].city = city;
+            users[i].street = street;
+            users[i].houseNumber = houseNumber; 
         }
 
         useEffect(() =>{
@@ -65,7 +67,8 @@
             users, setUsers,
             authenticateUser,
             addUser,editUser,
-            currentUser, setCurrentUser
+            currentUser, setCurrentUser,
+            isAdmin, setIsAdmin
         }
 
         return(

@@ -1,14 +1,15 @@
 import React from 'react'
-import { useContext } from 'react';
+import { useContext,useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useNavigate} from 'react-router-dom/dist';
+import {  } from 'react';
 
 export default function ProfilePage() {
 
     let navigate = useNavigate();
 
     const {currentUser, setCurrentUser} = useContext(UserContext);
-
+    
     const logOut = () => {
         setCurrentUser(null);
         navigate('/');
@@ -19,7 +20,6 @@ export default function ProfilePage() {
     <h1>Profile {currentUser.id}</h1>
         <div className='profile-pic'>
             <img src={currentUser.image}/>
-            {console.log(currentUser.image)}
         </div>
         <div>
             <p>Full name: {currentUser.firstname} {currentUser.lastname} </p>
