@@ -17,10 +17,9 @@ export default function ProfilePage() {
 
   return (
     <>
-    <h1>Profile {currentUser.id}</h1>
-        <div className='profile-pic'>
-            <img src={currentUser.image}/>
-        </div>
+    <div className='d-flex align-items-center flex-column'>
+        <h1>Profile {currentUser.id}</h1>
+        <img className='profile-pic rounded-circle img-thumbnail' src={currentUser.image}/>
         <div>
             <p>Full name: {currentUser.firstname} {currentUser.lastname} </p>
             <p>Email: {currentUser.email}</p>
@@ -33,6 +32,7 @@ export default function ProfilePage() {
             <button className="btn btn-primary" onClick={() => {
                 navigate('/edit')
             }}>Edit Profile</button>
+        </div>
         </div>
     </>
   )

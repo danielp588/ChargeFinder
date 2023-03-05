@@ -17,11 +17,19 @@ export default function AdminBox() {
 
   return (
     <>
-      <button className="btn btn-primary" onClick={AdminLogout}>Logout</button>
-       <div>
+      <div className='d-flex justify-content-center align-items-center flex-column'>
+          <div className='d-flex align-items-center'>
+          <h1 className='p-2'>Admin</h1>
+           <button className="btn btn-primary" onClick={AdminLogout}>Logout</button>
+         </div>
+        <h1 className='p-3'>Users:</h1>
+      </div>
+      <div className='d-flex justify-content-center align-items-center'>
+       <div className='d-flex flex-column'>
           {usersOnly.map((u,index) => (
            <UserRow key={index} user={u}/>
           ))}
+       </div>
        </div>
     </>
   )

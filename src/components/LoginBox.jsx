@@ -34,8 +34,9 @@ export default function LoginPage() {
     
   return (
     <>
+    <div className='d-flex align-items-center flex-column'>
     <h1>Login</h1>
-    <form >
+    <form className='d-flex align-items-center flex-column'>
         <div className="form-group">
           <label>Enter Username: </label>
           <input type="text" className="form-control" onChange={(event) => setUsername(event.target.value)} />
@@ -46,10 +47,11 @@ export default function LoginPage() {
         </div>
         <button className="btn btn-primary" onClick = {loginAttempt}>Login</button>
     </form>
-    <small>Not registered yet?</small>
+    <small className='register-yet'>Not registered yet?</small>
     <button className="btn btn-primary" onClick={() => {
         navigate("/register");
       }}>Register</button>
+      </div>
     </>
   )
 }

@@ -117,9 +117,10 @@ export default function RegisterBox() {
 
     return (
         <>
+        <div className='d-flex align-items-center flex-column'>
         <h1>Register</h1>
         <button className="btn btn-primary" onClick={()=>navigate('/')}>Back to Login</button>
-            <form className="px-4 py-3" onSubmit={Register}>
+            <form className="px-4 py-3">
 
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
@@ -137,7 +138,9 @@ export default function RegisterBox() {
                     <label htmlFor="picture">Profile Picture:</label>
                     <input type="file" className="form-control" id="picture" placeholder="Select .jpg or .jpeg" accept="img/jpg, img/jpeg" onChange={(e)=> previewImage(e.target)}/>
                     
-                    <img src={image}/>
+                    <div className='d-flex justify-content-center'>
+                        <img className='profile-pic rounded-circle img-thumbnail' src={image}/>
+                    </div>
                 </div>
 
                 <div className="form-group">
@@ -173,11 +176,10 @@ export default function RegisterBox() {
                     <input type="text" className="form-control" id="street" placeholder="Street" onChange={(e) => setStreet(e.target.value)} />
                     <label htmlFor="house-number">House Number:</label>
                     <input type="number" className="form-control" id="house-number" placeholder="House Number" onChange={(e) => setHouseNumber(e.target.value)} />
-                </div>
-                <button className="btn btn-primary">Register</button>
-
+                </div>            
             </form>
-
+            <button className="btn btn-primary" onClick={Register}>Register</button>
+            </div>
         </>
     )
 }

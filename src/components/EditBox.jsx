@@ -125,9 +125,9 @@ export default function EditBox() {
 
     return (
         <>
+        <div className='d-flex align-items-center flex-column'>
         <h1>Edit Profile</h1>
             <form className="px-4 py-3">
-
                 <div className="form-group">
                     <label htmlFor="username">Username:</label>
                     <input type="text" className="form-control" id="username" defaultValue={currentUser.username} onChange={(e) => setUsername(e.target.value)} />
@@ -145,7 +145,9 @@ export default function EditBox() {
                     <input type="file" className="form-control" id="picture" placeholder="Select .jpg or .jpeg" accept="img/jpg, img/jpeg" onChange={(e)=> previewImage(e.target)}/>
                     
                     {/*TO DO preview after photo change (change itself works)*/}
-                    <img src={currentUser.image} />
+                    <div className='d-flex justify-content-center'>
+                        <img className='profile-pic rounded-circle img-thumbnail' src={image}/>
+                    </div>
                 </div>
 
                 <div className="form-group">
@@ -182,9 +184,9 @@ export default function EditBox() {
                     <label htmlFor="house-number">House Number:</label>
                     <input type="number" className="form-control" id="house-number" defaultValue={currentUser.houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
                 </div>
-                <button className="btn btn-primary" onClick={Edit}>Edit Profile</button>
-
             </form>
+                <button className="btn btn-primary" onClick={Edit}>Edit Profile</button>
+            </div>
 
         </>
     )
